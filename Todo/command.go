@@ -17,29 +17,29 @@ type cmdFlags struct {
 }
 
 func NewCmdFlags() *cmdFlags {
-	CF := cmdFlags{}
+	CmdFlags := cmdFlags{}
 
-	flag.StringVar(&CF.add, "add", "", "Add a new todo specify title")
-	flag.StringVar(&CF.edit, "edit", "", "Edit a todo by index and specify new title. id:new_title")
-	flag.IntVar(&CF.delete, "delete", -1, "Specify todo by index to delete")
-	flag.IntVar(&CF.toggle, "toggle", -1, "Specify todo by index to toggle")
-	flag.BoolVar(&CF.list, "list", false, "List all todos")
+	flag.StringVar(&CmdFlags.add, "add", "", "Add a new todo specify title")
+	flag.StringVar(&CmdFlags.edit, "edit", "", "Edit a todo by index and specify new title. id:new_title")
+	flag.IntVar(&CmdFlags.delete, "delete", -1, "Specify todo by index to delete")
+	flag.IntVar(&CmdFlags.toggle, "toggle", -1, "Specify todo by index to toggle")
+	flag.BoolVar(&CmdFlags.list, "list", false, "List all todos")
 
 	flag.Parse()
 
-	return &CF
+	return &CmdFlags
 }
 
-func (CF *cmdFlags) Execute(todos *Todos) {
+func (CmdFlags *cmdFlags) Execute(todos *Todos) {
 	switch {
-		case CF.list:
+		case CmdFlags.list:
 			todos.print()
 		
-		case CF.add != "":
-			todos.Add(CF.add)
+		case CmdFlags.add != "":
+			todos.Add(CmdFlags.add)
 		
-		case CF.edit != "":
-			parts := strings.SplitN(CF.edit, ":", 2)
+		case CmdFlags.edit != "":
+			parts := strings.SplitN(CmdFlags.edit, ":", 2)
 			if len(parts) != 2 {
 				fmt.Println("Error, invalid format for edit. Please use id:new_title")
 
@@ -53,11 +53,11 @@ func (CF *cmdFlags) Execute(todos *Todos) {
 				todos.Edit(index, parts[1])
 			}
 		
-		case CF.toggle != -1:
-			todos.Toggle(CF.toggle)
+		case CmdFlags.toggle != -1:
+			todos.Toggle(CmdFlags.toggle)
 
-		case CF.delete != -1:
-			todos.delete(CF.delete)
+		case CmdFlags.delete != -1:
+			todos.delete(CmdFlags.delete)
 
 		default:
 			fmt.Println("Invalid Command")
