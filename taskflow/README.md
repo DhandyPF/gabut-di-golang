@@ -2,12 +2,17 @@
 
 Aplikasi manajemen tugas dengan autentikasi JWT. Backend Go, frontend Next.js.
 
-## Struktur
+## Kenapa ada dua folder terpisah
 
-- `taskflow-backend.zip`: REST API di Go (net/http, JWT, bcrypt, SQLite).
-- `taskflow-frontend.zip`: Aplikasi Next.js (App Router, TypeScript, Tailwind).
+Repo ini isinya dua project yang berdiri sendiri-sendiri, sengaja dipisah, bukan digabung jadi satu.
 
-Kedua bagian sudah diuji dan berhasil build serta jalan bersamaan di lingkungan sandbox ini.
+- `taskflow-backend/`: REST API di Go (net/http, JWT, bcrypt, SQLite). Jalan di port 8080.
+- `taskflow-frontend/`: Aplikasi Next.js (App Router, TypeScript, Tailwind). Jalan di port 3000.
+
+Keduanya pakai bahasa dan tooling yang beda total (Go vs Node.js), jadi masing-masing punya dependency, proses build, dan cara deploy sendiri. Backend dan frontend harus dijalankan bersamaan di dua terminal berbeda saat development, saling terhubung lewat HTTP (frontend memanggil API backend).
+
+Kedua bagian sudah diuji dan berhasil build serta jalan bersamaan.
+
 
 ## Menjalankan backend
 

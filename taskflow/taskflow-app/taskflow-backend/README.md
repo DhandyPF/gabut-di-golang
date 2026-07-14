@@ -6,7 +6,7 @@ SQLite storage.
 
 ## Stack
 
-- Go 1.24, standard library `net/http` (method + path routing, no framework)
+- Go 1.22, standard library `net/http` (method + path routing, no framework)
 - SQLite via `mattn/go-sqlite3` (swap for Postgres/MySQL by changing the
   repository layer if needed)
 - `golang-jwt/jwt/v5` for stateless JWT auth
